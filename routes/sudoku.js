@@ -1,17 +1,23 @@
 const express = require('express');
 const router = express.Router();
+const validation = require('../bussiness/validation');
 
 router.post('/validate', async (req, res) => {
-  let input = req.body.number;
+  let data = req.body.data;
 
-  // validation
-  if (!input) {
-    return res.status(400).send('No input. Please provide the input.');
-  } else if (input.length !== 81) {
-    return res.status(400).send('Input number must be 81 numbers long.');
+  if (validation.validateSudoku(data)) {
+    let result = {
+      'status': true,
+      'message': 'The sudoku is valid'
+    };
+    return res.status(200).send(result);
+  } else {
+    let result = {
+      'status': false,
+      'message': 'The sudoku is not valid'
+    };
+    return res.status(200).send(result);
   }
-
-  return res.status(200).send('Hail SUDOKU');
 });
 
 module.exports = router;
