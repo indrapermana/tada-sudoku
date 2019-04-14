@@ -4,7 +4,8 @@
   "description": "sudoku checker",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll"
+    "test": "jest",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
