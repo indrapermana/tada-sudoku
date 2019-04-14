@@ -1,6 +1,6 @@
 # TADA Sudoku
 
-TADA Sudoku is sudoku checker api. Built on top of nodeJS and expressJS.
+TADA Sudoku is sudoku checker api. Currently, the api only provide for 9x9 or 81 numbers. Built on top of nodeJS and expressJS.
 
 # Installation
 
