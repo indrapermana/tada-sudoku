@@ -50,15 +50,15 @@ By default, the Docker will expose port 80, so change this within the Dockerfile
 
 ```sh
 cd tada-sudoku
-docker build -t indra/tadasudoku .
+docker build -t <youruser>/tadasudoku .
 ```
 
 This will create the tada-sudoku image and pull in the necessary dependencies.
 
-Once done, run the Docker image and map the port to whatever you wish on your host. In this example, we simply map port 80 of the host to port 8080 of the Docker (or whatever port was exposed in the Dockerfile):
+Once done, run the Docker image and map the port to whatever you wish on your host. In this example, we simply map port 8000 of the host to port 8080 of the Docker (or whatever port was exposed in the Dockerfile):
 
 ```sh
-docker run -p 80:8080 <youruser>/tada-sudoku
+docker run -p 8000:8080 <youruser>/tada-sudoku
 ```
 
 Verify the deployment by testing the validate api (Please see section how to use).
