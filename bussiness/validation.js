@@ -1,38 +1,46 @@
+// this function is for validate every rows on the grid. member of row will be check in isValidRow function.
 const checkRows = (grid) => {
-    console.log('Checking rows');
+    let status = true;
     grid.map((val, i, arr) => {
         if (isValidRow(val) === false) {
-            return false;
+            status = status & false;
+        } else {
+            status = status & true;
         }
     });
-    return true;
+
+    return status;
 }
 
-const isValidRow = (rows) => {
+// this function will validate each member of array
+const isValidRow = exports.isValidRow = (rows) => {
     let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    numbers.map((val, i, arr) => {
-        if (!rows.includes(val)) {
-            return false;
+    rows.map((val, i, arr) => {
+        if (numbers.indexOf(val) !== -1) {
+            numbers.splice(numbers.indexOf(val), 1);
         }
     });
+    if (numbers.length !== 0) {
+        return false;
+    }
     return true;
 }
 
+// this function will change columns into row and then check using isValidRow function.
 const checkColumns = (grid) => {
-    console.log('Checking columns');
     let columns = [];
-    for (i = 0; i < 9; i++) {
+    for (j = 0; j < 9; j++) {
         let newC = [];
         grid.map((val, i, arr) => {
-            newC.push(val[i]);
+            newC.push(val[j]);
         })
         columns.push(newC);
     }
     return checkRows(columns);
 }
 
+// this function will change each little box (3x3) into rows and then check using isValidRow function.
 const checkSquares = (grid) => {
-    console.log('Checking squares');
     let squares = [];
     for (row = 0; row < 3; row++) {
         for (col = 0; col < 3; col++) {
@@ -53,16 +61,15 @@ const checkSquares = (grid) => {
     return checkRows(squares);
 }
 
+// if checkRows and checkColumns and checkSquares are Ok, then it will return true. that means, sudoku array is valid.
 exports.validateSudoku = (grid) => {
-    if (checkRows(grid) === true) {
-        console.log('rows are okay');
-        if (checkColumns(grid) === true) {
-            console.log('columns are okay');
-            if (checkSquares(grid) === true) {
-                console.log('squares are okay');
+    if (checkRows(grid) == true) {
+        if (checkColumns(grid) == true) {
+            if (checkSquares(grid) == true) {
                 return true;
             }
         }
     }
+
     return false;
 }

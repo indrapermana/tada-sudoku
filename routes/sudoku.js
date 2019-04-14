@@ -4,7 +4,6 @@ const validation = require('../bussiness/validation');
 
 router.post('/validate', async (req, res) => {
   let data = req.body.data;
-
   if (validation.validateSudoku(data)) {
     let result = {
       'status': true,
